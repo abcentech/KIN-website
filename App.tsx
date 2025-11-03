@@ -35,8 +35,8 @@ const App: React.FC = () => {
             </div>
 
             <div className="relative z-10 px-4 py-8">
-                <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-black text-white uppercase tracking-wider break-words" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.7)' }}>
-                   <span className="inline-block">
+                <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-black text-white uppercase tracking-wider" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.7)' }}>
+                   <span className="inline-block overflow-hidden whitespace-nowrap animate-typing-reveal border-r-4 border-r-brand-yellow">
                         KidsInspiring Nation<span className="text-brand-yellow">.</span>
                     </span>
                 </h1>
