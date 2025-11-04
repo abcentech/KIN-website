@@ -42,6 +42,9 @@ export const Programmes: React.FC<ProgrammesProps> = ({ onNavigate }) => {
                   >
                     <div className="flex-1">
                       <h3 className="text-xl md:text-3xl font-bold text-brand-purple">{programme.title}</h3>
+                      {programme.subtitle && (
+                        <p className="text-base md:text-lg text-gray-600 mt-1">{programme.subtitle}</p>
+                      )}
                     </div>
                     <div className="ml-4">
                       <svg
@@ -67,11 +70,23 @@ export const Programmes: React.FC<ProgrammesProps> = ({ onNavigate }) => {
                         {programme.content.map((paragraph, pIndex) => (
                           <p key={pIndex}>{paragraph}</p>
                         ))}
-                        {programme.title === "THE goDs UNIVERSITY" && onNavigate && (
+                        {programme.buttonText && programme.buttonLink && (
                           <div className="mt-6 text-center">
+                            <a 
+                              href={programme.buttonLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-block bg-brand-yellow text-brand-purple-dark font-bold py-3 px-8 rounded-full text-base uppercase tracking-wider hover:bg-brand-yellow-dark transition-all duration-300 transform hover:scale-105 shadow-lg"
+                            >
+                              {programme.buttonText}
+                            </a>
+                          </div>
+                        )}
+                        {programme.title === "THE goDs UNIVERSITY" && onNavigate && (
+                          <div className="mt-4 text-center">
                             <button 
                               onClick={() => onNavigate('gods-university')}
-                              className="inline-block bg-brand-yellow text-brand-purple-dark font-bold py-3 px-8 rounded-full text-base uppercase tracking-wider hover:bg-brand-yellow-dark transition-all duration-300 transform hover:scale-105 shadow-lg"
+                              className="inline-block bg-brand-purple text-white font-bold py-3 px-8 rounded-full text-base uppercase tracking-wider hover:bg-brand-purple-dark transition-all duration-300 transform hover:scale-105 shadow-lg"
                             >
                               Learn More
                             </button>
@@ -95,13 +110,18 @@ const programmes = [
     title: "THE KIDSINSPIRING NATION DEVOTIONAL (KIND)",
     content: [
       "KIND, since its inception in 2021, has delivered daily devotional teachings directly to children's homes through online platforms - Telegram and YouTube (which was re-launched this year). What began as a small initiative has grown remarkably into the similitude of a teaching ministry, reaching hundreds of children this year alone. KidsInspiring Nation is confident that this program will leave a lasting legacy, influencing generations to come with the power of God's Word."
-    ]
+    ],
+    buttonText: "Join our Community",
+    buttonLink: "https://t.me/kidsinspiring"
   },
   {
-    title: "goDs EXPERIENCE",
+    title: "goDXperience",
+    subtitle: "The Gen Alpha Church",
     content: [
       "The goD Experience is a programme that takes the form of a Sunday Service for goDS, by goDs to raise children as goDs."
-    ]
+    ],
+    buttonText: "Join our Sunday Livestream",
+    buttonLink: "https://www.youtube.com/@KidsInspiringNation"
   },
   {
     title: "The goD cells",
@@ -115,13 +135,17 @@ const programmes = [
       "Founded on the following scriptures: Luke 2.52. Judges 7.7, Genesis 14.14, 1 Samuel 23:8, the goDs University is the training arm of the KidsInspiring Nation (KIN). It was founded with an aim: to raise children who build nations and shift Generational paradigms as goDs.",
       "Over the first six years, God gave us unique programmes that intuitively stand apart and have generated immeasurable impact in the lives of children, across nations.",
       "In 2024, the goDs University was launched and these unique programmes were curated into a 7-year pathway and integrated goDs University. This divinely and well-curated pathway would help any child/teenager develop unique spiritual strength, harness and polish untapped skills, and maximise decades of service to God through nation-building."
-    ]
+    ],
+    buttonText: "Register",
+    buttonLink: "https://pay.squadco.com/storefront/X6EJTC83"
   },
   {
     title: "THE DANIEL FAST",
     content: [
       "Inspired by Daniel 1:8-20, which describes the fast undertaken by Daniel, Hananiah, Mishael, and Azariah, the Daniel Fast is an annual spiritual practice. During this fast, the children abstain from regular meals, consuming only fruits and water. They are also given the opportunity to tarry long in prayers. The Daniel Fast is broken into 3 weekends of 48 hour fasts and 15 sessions of an hour long supplication. The fast takes place in January, from Friday to Sunday each week."
-    ]
+    ],
+    buttonText: "Check out the Programme",
+    buttonLink: "https://www.youtube.com/watch?v=F4jryaB5boc&list=PLKPB9MmneDEDnp0RjpuVL26NPuVLa2jo6"
   },
   {
     title: "THE NEHEMIAH FAST",
@@ -130,7 +154,7 @@ const programmes = [
     ]
   },
   {
-    title: "THE PSALM 119 CHALLENGE AND IT'S SCHOOL-LEVEL EXTENSION",
+    title: "THE PSALM 119 NATIONAL VALUES CHALLENGE",
     content: [
       "In a bid to further nation building, the KIN launched the Psalm 119 Schools Challenge about three years ago. The challenge encourages schools to motivate their students to engage with Psalm 119 and derive national values from the interpreted meanings of its verses.",
       "Over the years, the Psalm 119 Schools Challenge has experienced significant growth. Starting with a modest initial fund of ₦11,917.60 (Eleven Thousand, Nine Hundred and Seventeen Naira, Sixty Kobo), the 2025 edition awarded over ₦3 million (Three Million Naira) in educational scholarships and prizes. The challenge will continue to be held annually until every school in the nation embraces the national values embedded in the 176 verses of Psalm 119."
