@@ -70,7 +70,28 @@ export const Programmes: React.FC<ProgrammesProps> = ({ onNavigate }) => {
                         {programme.content.map((paragraph, pIndex) => (
                           <p key={pIndex}>{paragraph}</p>
                         ))}
-                        {programme.buttonText && programme.buttonLink && (
+                        {programme.title === "THE goDs UNIVERSITY" ? (
+                          <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
+                            {programme.buttonText && programme.buttonLink && (
+                              <a 
+                                href={programme.buttonLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-block bg-brand-yellow text-brand-purple-dark font-bold py-3 px-8 rounded-full text-base uppercase tracking-wider hover:bg-brand-yellow-dark transition-all duration-300 transform hover:scale-105 shadow-lg text-center"
+                              >
+                                {programme.buttonText}
+                              </a>
+                            )}
+                            {onNavigate && (
+                              <button 
+                                onClick={() => onNavigate('gods-university')}
+                                className="inline-block bg-brand-purple text-white font-bold py-3 px-8 rounded-full text-base uppercase tracking-wider hover:bg-brand-purple-dark transition-all duration-300 transform hover:scale-105 shadow-lg"
+                              >
+                                Learn More
+                              </button>
+                            )}
+                          </div>
+                        ) : programme.buttonText && programme.buttonLink ? (
                           <div className="mt-6 text-center">
                             <a 
                               href={programme.buttonLink}
@@ -81,17 +102,7 @@ export const Programmes: React.FC<ProgrammesProps> = ({ onNavigate }) => {
                               {programme.buttonText}
                             </a>
                           </div>
-                        )}
-                        {programme.title === "THE goDs UNIVERSITY" && onNavigate && (
-                          <div className="mt-4 text-center">
-                            <button 
-                              onClick={() => onNavigate('gods-university')}
-                              className="inline-block bg-brand-purple text-white font-bold py-3 px-8 rounded-full text-base uppercase tracking-wider hover:bg-brand-purple-dark transition-all duration-300 transform hover:scale-105 shadow-lg"
-                            >
-                              Learn More
-                            </button>
-                          </div>
-                        )}
+                        ) : null}
                       </div>
                     </div>
                   </div>
