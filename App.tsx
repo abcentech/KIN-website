@@ -47,7 +47,7 @@ const App: React.FC = () => {
                 </AnimatedSection>
             </div>
             
-            <div className="absolute bottom-0 left-0 w-full h-24 sm:h-48 bg-gradient-to-t from-white to-transparent" aria-hidden="true"></div>
+            <div className="absolute bottom-0 left-0 w-full h-16 sm:h-24 bg-gradient-to-t from-white to-transparent" aria-hidden="true"></div>
         </section>
 
         {/* About Us Section */}
