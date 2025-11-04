@@ -81,7 +81,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage }) => {
       </div>
 
       {isOpen && (
-        <div className="md:hidden">
+        <div className="md:hidden animate-fade-in-down">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navLinks.map((link) => (
               <button key={link.name} onClick={() => handleNavClick(link.page, link.href)} className="text-gray-700 hover:text-brand-purple block w-full text-left px-3 py-2 rounded-md text-base font-medium transition-colors">
