@@ -35,9 +35,19 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/design-system.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/whatsapp-button.css">
+    <link rel="stylesheet" href="css/pwa.css">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#FFD700">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="KIN">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="apple-touch-icon" href="images/logo.png">
 </head>
 
 <body>
@@ -441,9 +451,36 @@
         </div>
     </footer>
 
+    <!-- Floating WhatsApp Button -->
+    <a href="https://whatsapp.com/channel/0029Va8XnCuGE56c4SMaT41w" target="_blank" class="whatsapp-float"
+        aria-label="Join our WhatsApp Channel">
+        💬
+    </a>
+
+    <!-- Bottom Navigation (PWA Mode) -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="bottom-nav-item active">
+            <div class="bottom-nav-icon">🏠</div>
+            <span>Home</span>
+        </a>
+        <a href="programs.html" class="bottom-nav-item">
+            <div class="bottom-nav-icon">📚</div>
+            <span>Programs</span>
+        </a>
+        <a href="progress.html" class="bottom-nav-item">
+            <div class="bottom-nav-icon">📊</div>
+            <span>Progress</span>
+        </a>
+        <a href="community.html" class="bottom-nav-item">
+            <div class="bottom-nav-icon">👥</div>
+            <span>Community</span>
+        </a>
+    </nav>
+
     <!-- Scripts -->
     <script src="js/main.js"></script>
     <script src="js/stats-counter.js"></script>
+    <script src="js/pwa.js"></script>
 
 </body>
 
