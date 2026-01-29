@@ -6,6 +6,13 @@ interface HeaderProps {
   currentPage: 'home' | 'about' | 'contact' | 'programmes' | 'gods-university';
 }
 
+type NavLink = {
+  name: string;
+  page?: 'home' | 'about' | 'contact' | 'programmes' | 'gods-university';
+  href?: string;
+  isExternal?: boolean;
+};
+
 export const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -18,28 +25,38 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = (page: 'home' | 'about' | 'contact' | 'programmes' | 'gods-university', href?: string) => {
-    if (page === 'about' || page === 'contact' || page === 'programmes' || page === 'gods-university') {
-      onNavigate(page);
-      window.scrollTo(0, 0);
-    } else {
-      onNavigate('home');
-      if (href) {
-        setTimeout(() => {
-          const element = document.querySelector(href);
-          element?.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
+  const handleNavClick = (link: NavLink) => {
+    if (link.isExternal && link.href) {
+      window.location.href = link.href;
+      return;
+    }
+
+    if (link.page) {
+      if (link.page === 'about' || link.page === 'contact' || link.page === 'programmes' || link.page === 'gods-university') {
+        onNavigate(link.page);
+        window.scrollTo(0, 0);
+      } else {
+        onNavigate('home');
+        if (link.href) {
+          setTimeout(() => {
+            const element = document.querySelector(link.href!);
+            element?.scrollIntoView({ behavior: 'smooth' });
+          }, 100);
+        }
       }
     }
     setIsOpen(false);
   };
 
-  const navLinks = [
-    { name: 'Home', page: 'home' as const, href: '#home' },
-    { name: 'Programmes', page: 'programmes' as const },
-    { name: 'About', page: 'about' as const },
+  const navLinks: NavLink[] = [
+    { name: 'Home', page: 'home', href: '#home' },
+    { name: 'About', page: 'about' },
+    { name: 'Programs', page: 'programmes' }, // Keeping internal for now, but text changed
+    { name: 'Spiritual Life', href: 'prayer.html', isExternal: true }, // Linking to prayer.html
+    { name: 'Content', href: 'content.html', isExternal: true },
+    { name: 'Community', href: 'community.html', isExternal: true },
   ];
-  
+
   const scrolledOrOpen = isScrolled || isOpen;
 
   return (
@@ -47,23 +64,23 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           <div className="flex-shrink-0">
-            <button onClick={() => handleNavClick('home', '#home')} className="flex items-center">
-                <img src="/KIN-website/logo.png" alt="KidsInspiring Nation Logo" className="h-16 sm:h-20 md:h-24 w-auto" />
-                <div className="border-l-2 border-brand-yellow pl-1">
-                  <p className={`text-xs sm:text-sm font-bold tracking-wide leading-tight transition-colors duration-300 ${scrolledOrOpen ? 'text-brand-purple-dark' : 'text-white'}`} style={{ fontFamily: "'Lobster', cursive" }}>
-                    raising gods,<br/>building nations
-                  </p>
-                </div>
+            <button onClick={() => handleNavClick({ name: 'Home', page: 'home', href: '#home' })} className="flex items-center">
+              <img src="/KIN-website/logo.png" alt="KidsInspiring Nation Logo" className="h-16 sm:h-20 md:h-24 w-auto" />
+              <div className="border-l-2 border-brand-yellow pl-1">
+                <p className={`text-xs sm:text-sm font-bold tracking-wide leading-tight transition-colors duration-300 ${scrolledOrOpen ? 'text-brand-purple-dark' : 'text-white'}`} style={{ fontFamily: "'Lobster', cursive" }}>
+                  raising gods,<br />building nations
+                </p>
+              </div>
             </button>
           </div>
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
               {navLinks.map((link) => (
-                <button key={link.name} onClick={() => handleNavClick(link.page, link.href)} className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${scrolledOrOpen ? 'text-gray-700 hover:text-brand-purple' : 'text-gray-200 hover:text-white'}`}>
+                <button key={link.name} onClick={() => handleNavClick(link)} className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${scrolledOrOpen ? 'text-gray-700 hover:text-brand-purple' : 'text-gray-200 hover:text-white'}`}>
                   {link.name}
                 </button>
               ))}
-               <a href="https://paystack.shop/pay/KINgive" target="_blank" rel="noopener noreferrer" className="ml-4 bg-brand-yellow text-brand-purple-dark font-bold py-2 px-4 rounded-full text-sm uppercase tracking-wider hover:bg-brand-yellow-dark transition-colors duration-300">
+              <a href="https://paystack.shop/pay/KINgive" target="_blank" rel="noopener noreferrer" className="ml-4 bg-brand-yellow text-brand-purple-dark font-bold py-2 px-4 rounded-full text-sm uppercase tracking-wider hover:bg-brand-yellow-dark transition-colors duration-300">
                 Give
               </a>
             </div>
@@ -84,12 +101,12 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage }) => {
         <div className="md:hidden animate-fade-in-down">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navLinks.map((link) => (
-              <button key={link.name} onClick={() => handleNavClick(link.page, link.href)} className="text-gray-700 hover:text-brand-purple block w-full text-left px-3 py-2 rounded-md text-base font-medium transition-colors">
+              <button key={link.name} onClick={() => handleNavClick(link)} className="text-gray-700 hover:text-brand-purple block w-full text-left px-3 py-2 rounded-md text-base font-medium transition-colors">
                 {link.name}
               </button>
             ))}
             <a href="https://paystack.shop/pay/KINgive" target="_blank" rel="noopener noreferrer" className="block w-full text-left bg-brand-yellow text-brand-purple-dark font-bold mt-2 py-2 px-3 rounded-md text-base uppercase tracking-wider hover:bg-brand-yellow-dark transition-colors duration-300">
-                Give
+              Give
             </a>
           </div>
         </div>

@@ -65,9 +65,14 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="programs.html">Programs</a></li>
+                <li class="nav-item-dropdown">
+                    <a href="#" style="cursor: default;">Spiritual Life ▾</a>
+                    <div class="dropdown-content">
+                        <a href="prayer.html">🙏 Prayer Wall</a>
+                        <a href="progress.html">📊 My Progress</a>
+                    </div>
+                </li>
                 <li><a href="content.html">Content</a></li>
-                <li><a href="community.html">Community</a></li>
-                <li><a href="support.html">Support</a></li>
                 <li><a href="https://t.me/KidsInspiring" target="_blank" class="btn btn-primary btn-small">Join KIND</a>
                 </li>
             </ul>
@@ -202,8 +207,12 @@
                             The KidsInspiring Nation Devotional is a daily spiritual meal for children aged 7 and up.
                             Join us on Telegram and YouTube Live every day!
                         </p>
-                        <a href="https://t.me/KidsInspiring" target="_blank" class="btn btn-secondary">Join on
-                            Telegram</a>
+                        <div style="display: flex; gap: var(--space-sm); flex-direction: column;">
+                            <button class="btn btn-primary btn-small" data-track-action="kind"
+                                data-program-name="Daily KIND">Done Today!</button>
+                            <a href="https://t.me/KidsInspiring" target="_blank"
+                                class="btn btn-secondary btn-small">Join on Telegram</a>
+                        </div>
                     </div>
                 </div>
 
@@ -446,6 +455,8 @@
                 style="border-top: 1px solid var(--color-gray-700); margin-top: var(--space-2xl); padding-top: var(--space-lg); text-align: center;">
                 <p style="color: var(--color-gray-300);">
                     &copy; 2026 KidsInspiring Nation. All rights reserved. | Raising goDs, Building NATIONS
+                    <br>
+                    <a href="grace_generator.html" class="footer-admin-link">Leader Portal</a>
                 </p>
             </div>
         </div>
@@ -467,20 +478,33 @@
             <div class="bottom-nav-icon">📚</div>
             <span>Programs</span>
         </a>
-        <a href="progress.html" class="bottom-nav-item">
-            <div class="bottom-nav-icon">📊</div>
-            <span>Progress</span>
-        </a>
+        <div class="bottom-nav-item" id="spiritTab" style="cursor: pointer;">
+            <div class="bottom-nav-icon">🕊️</div>
+            <span>Spirit</span>
+        </div>
         <a href="community.html" class="bottom-nav-item">
             <div class="bottom-nav-icon">👥</div>
             <span>Community</span>
         </a>
     </nav>
 
+    <!-- Spirit Modal -->
+    <div class="spirit-modal" id="spiritModal">
+        <a href="prayer.html" class="spirit-modal-item">
+            <span class="spirit-modal-icon">🙏</span>
+            <span>Prayer Wall</span>
+        </a>
+        <a href="progress.html" class="spirit-modal-item">
+            <span class="spirit-modal-icon">📊</span>
+            <span>My Progress</span>
+        </a>
+    </div>
+
     <!-- Scripts -->
     <script src="js/main.js"></script>
     <script src="js/stats-counter.js"></script>
     <script src="js/pwa.js"></script>
+    <script src="js/progress-tracker.js"></script>
 
 </body>
 

@@ -17,6 +17,8 @@
 
     <link rel="stylesheet" href="css/design-system.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/whatsapp-button.css">
+    <link rel="stylesheet" href="css/progress-tracker.css">
     <link rel="icon" type="image/png" href="images/logo.png">
 </head>
 
@@ -33,11 +35,17 @@
 
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
+                <li><a href="about.html" class="active">About</a></li>
                 <li><a href="programs.html">Programs</a></li>
+                <li class="nav-item-dropdown">
+                    <a href="#" style="cursor: default;">Spiritual Life ▾</a>
+                    <div class="dropdown-content">
+                        <a href="prayer.html">🙏 Prayer Wall</a>
+                        <a href="progress.html">📊 My Progress</a>
+                    </div>
+                </li>
                 <li><a href="content.html">Content</a></li>
                 <li><a href="community.html">Community</a></li>
-                <li><a href="support.html">Support</a></li>
                 <li><a href="https://t.me/KidsInspiring" target="_blank" class="btn btn-primary btn-small">Join KIND</a>
                 </li>
             </ul>
@@ -276,12 +284,49 @@
                 style="border-top: 1px solid var(--color-gray-700); margin-top: var(--space-2xl); padding-top: var(--space-lg); text-align: center;">
                 <p style="color: var(--color-gray-300);">
                     &copy; 2026 KidsInspiring Nation. All rights reserved.
+                    <br>
+                    <a href="grace_generator.html" class="footer-admin-link">Leader Portal</a>
                 </p>
             </div>
         </div>
     </footer>
 
+    <!-- Bottom Navigation (PWA Mode) -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="bottom-nav-item">
+            <div class="bottom-nav-icon">🏠</div>
+            <span>Home</span>
+        </a>
+        <a href="programs.html" class="bottom-nav-item">
+            <div class="bottom-nav-icon">📚</div>
+            <span>Programs</span>
+        </a>
+        <div class="bottom-nav-item" id="spiritTab" style="cursor: pointer;">
+            <div class="bottom-nav-icon">🕊️</div>
+            <span>Spirit</span>
+        </div>
+        <a href="community.html" class="bottom-nav-item">
+            <div class="bottom-nav-icon">👥</div>
+            <span>Community</span>
+        </a>
+    </nav>
+
+    <!-- Spirit Modal -->
+    <div class="spirit-modal" id="spiritModal">
+        <a href="prayer.html" class="spirit-modal-item">
+            <span class="spirit-modal-icon">🙏</span>
+            <span>Prayer Wall</span>
+        </a>
+        <a href="progress.html" class="spirit-modal-item">
+            <span class="spirit-modal-icon">📊</span>
+            <span>My Progress</span>
+        </a>
+    </div>
+
+    <!-- Scripts -->
     <script src="js/main.js"></script>
+    <script src="js/pwa.js"></script>
+    <script src="js/progress-tracker.js"></script>
 
 </body>
 

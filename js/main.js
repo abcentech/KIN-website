@@ -106,3 +106,36 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('load', () => {
     document.body.classList.add('loaded');
 });
+
+// ===================================
+// MOBILE SPIRIT MODAL
+// ===================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    const spiritTab = document.getElementById('spiritTab');
+    const spiritModal = document.getElementById('spiritModal');
+
+    if (spiritTab && spiritModal) {
+        spiritTab.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent closing immediately
+            spiritModal.classList.toggle('active');
+            spiritTab.classList.toggle('active');
+        });
+
+        // Close modal when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!spiritModal.contains(e.target) && !spiritTab.contains(e.target)) {
+                spiritModal.classList.remove('active');
+                spiritTab.classList.remove('active');
+            }
+        });
+
+        // Close when clicking a link inside
+        spiritModal.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                spiritModal.classList.remove('active');
+                spiritTab.classList.remove('active');
+            });
+        });
+    }
+});
